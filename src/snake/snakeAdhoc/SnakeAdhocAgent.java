@@ -14,18 +14,34 @@ public class SnakeAdhocAgent extends SnakeAgent {
 
     @Override
     protected Action decide(Perception perception) {
-        if(perception.getN().hasFood())
+        Cell n = perception.getN();
+        Cell s = perception.getS();
+        Cell e = perception.getE();
+        Cell w = perception.getW();
+
+        if(n.hasFood())
             return Action.NORTH;
-        if(perception.getS().hasFood())
+        if(s.hasFood())
             return Action.SOUTH;
-        if(perception.getE().hasFood())
+        if(e.hasFood())
             return Action.EAST;
-        if(perception.getW().hasFood())
+        if(w.hasFood())
             return Action.WEST;
 
+        int snakeLine = this.cell.getLine();
+        int snakeColumn = this.cell.getColumn();
 
-        //TODO
+        int foodLine = perception.getFood().getLine();
+        int foodColumn = perception.getFood().getColumn();
 
+        if(snakeLine < foodLine && !e.hasAgent() && !e.hasTail())
+            return Action.EAST;
+        else if(snakeLine > foodLine && !w.hasAgent() && !w.hasTail())
+            return Action.WEST;
+        else if(snakeColumn < foodColumn && !s.hasAgent() && !s.hasTail())
+            return Action.SOUTH;
+        else if(!n.hasAgent() && !n.hasTail())
+            return Action.NORTH;
 
 
         return null;
