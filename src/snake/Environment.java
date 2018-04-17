@@ -5,6 +5,7 @@ import snake.snakeRandom.SnakeRandomAgent;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -15,6 +16,8 @@ public class Environment {
     private final List<SnakeAgent> agents;
     private Food food;
     private final int maxIterations;
+
+    private LinkedList<Tail> tails;
 
     public Environment(
             int size,
@@ -31,6 +34,8 @@ public class Environment {
 
         this.agents = new ArrayList<>();
         this.random = new Random();
+
+        this.tails = new LinkedList<>();
     }
 
     public void initialize(int seed) {
@@ -48,14 +53,16 @@ public class Environment {
         agents.add(snakeAdhocAgent);
     }
 
-    private void placeFood() {
-        // TODO
-        if(food == null)
-            food = new Food(grid[random.nextInt(grid.length)][random.nextInt(grid.length)]);
+    public void placeFood() {
+        Cell cell = grid[random.nextInt(grid.length)][random.nextInt(grid.length)];
+        while(cell.hasAgent() || cell.hasTail()) {
+            cell = grid[random.nextInt(grid.length)][random.nextInt(grid.length)];
+        }
+        food = new Food(cell);
     }
 
     public void simulate() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < maxIterations; i++) {
             for (SnakeAgent agent: agents ) {
                 agent.act(this);
                 fireUpdatedEnvironment();
@@ -73,6 +80,11 @@ public class Environment {
             return grid[cell.getLine() - 1][cell.getColumn()];
         }
         return null;
+    }
+
+    public void addTail(Tail tail) {
+        tails.add(tail);
+        tail.getCell().setTail(tail);
     }
 
     public Cell getSouthCell(Cell cell) {

@@ -59,6 +59,8 @@ public class Cell {
             return agent.getColor();
         } else if (hasFood()) {
             return food.getColor();
+        } else if(hasTail()) {
+            return tail.getColor();
         } else {
             return Cell.COLOR;
         }

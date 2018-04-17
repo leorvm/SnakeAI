@@ -44,7 +44,7 @@ public abstract class SnakeAgent {
         }
 
         if (nextCell != null && !nextCell.hasAgent() && !nextCell.hasTail()) {
-            setCell(nextCell);
+            setCell(nextCell, environment);
         }
     }
 
@@ -54,10 +54,25 @@ public abstract class SnakeAgent {
         return cell;
     }
 
-    public void setCell(Cell newCell) {
-        if(this.cell != null){this.cell.setAgent(null);}
+    public void setCell(Cell newCell, Environment environment) {
+        if (this.cell != null) {
+            this.cell.setAgent(null);
+        }
+
+
+        Cell aux = this.cell;
         this.cell = newCell;
-        if(newCell != null){newCell.setAgent(this);}
+
+        if(newCell.hasFood()) {
+            newCell.setFood(null);
+            environment.placeFood();
+            //aux.setTail(new Tail(null));
+            environment.addTail(new Tail(aux));
+
+        }
+        if (newCell != null) {
+            newCell.setAgent(this);
+        }
     }    
     
     public Color getColor() {

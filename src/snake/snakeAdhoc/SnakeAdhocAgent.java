@@ -36,7 +36,7 @@ public class SnakeAdhocAgent extends SnakeAgent {
 
         if(snakeLine < foodLine && s != null &&  !s.hasAgent() && !s.hasTail())
             return Action.SOUTH;
-        else if(snakeLine > foodLine && s != null && !n.hasAgent() && !n.hasTail())
+        else if(snakeLine > foodLine && n != null && !n.hasAgent() && !n.hasTail())
             return Action.NORTH;
         else if(snakeColumn < foodColumn && e != null && !e.hasAgent() && !e.hasTail())
             return Action.EAST;
