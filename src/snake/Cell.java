@@ -39,7 +39,7 @@ public class Cell {
 
     public void setFood(Food food) { this.food = food; }
 
-    public boolean hastFood() { return food != null; }
+    public boolean hasFood() { return food != null; }
 
     public Tail getTail() {
         return tail;
@@ -52,7 +52,7 @@ public class Cell {
     public Color getColor() {
         if (hasAgent()) {
             return agent.getColor();
-        } else if (hastFood()) {
+        } else if (hasFood()) {
             return food.getColor();
         } else {
             return Cell.COLOR;

@@ -1,13 +1,14 @@
 package snake;
 
 public class Perception {
-    private Cell n, s, e, w;
+    private Cell n, s, e, w, food;
 
-    public Perception(Cell N, Cell S, Cell E, Cell O) {
+    public Perception(Cell N, Cell S, Cell E, Cell O, Cell food) {
         this.n = N;
         this.s = S;
         this.e = E;
         this.w = O;
+        this.food = food;
     }
 
     public Cell getE() {
@@ -24,5 +25,9 @@ public class Perception {
 
     public Cell getS() {
         return s;
+    }
+
+    public Cell getFood() {
+        return food;
     }
 }

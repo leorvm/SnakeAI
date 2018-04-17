@@ -85,6 +85,10 @@ public class Environment {
         return null;
     }
 
+    public Cell getFoodCell() {
+        return food.getCell();
+    }
+
     public Cell getWestCell(Cell cell) {
         if (cell.getColumn() > 0) {
             return grid[cell.getLine()][cell.getColumn() - 1];

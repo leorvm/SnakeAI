@@ -24,7 +24,8 @@ public abstract class SnakeAgent {
                 environment.getNorthCell(cell),
                 environment.getSouthCell(cell),
                 environment.getEastCell(cell),
-                environment.getWestCell(cell));
+                environment.getWestCell(cell),
+                environment.getFoodCell());
     }
 
     protected void execute(Action action, Environment environment)

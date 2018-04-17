@@ -14,14 +14,15 @@ public class SnakeAdhocAgent extends SnakeAgent {
 
     @Override
     protected Action decide(Perception perception) {
-        if(perception.getN().hastFood())
+        if(perception.getN().hasFood())
             return Action.NORTH;
-        if(perception.getS().hastFood())
+        if(perception.getS().hasFood())
             return Action.SOUTH;
-        if(perception.getE().hastFood())
+        if(perception.getE().hasFood())
             return Action.EAST;
-        if(perception.getW().hastFood())
+        if(perception.getW().hasFood())
             return Action.WEST;
+
 
         //TODO
 

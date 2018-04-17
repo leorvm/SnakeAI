@@ -11,7 +11,7 @@ public class Tail {
     public Tail(Cell cell) {
         this.cell = cell;
         if (cell != null)
-            this.cell.;
+            this.cell.setTail(this);
     }
 
     public Color getColor() {
@@ -24,10 +24,10 @@ public class Tail {
 
     public void setCell(Cell cell) {
         if (this.cell != null)
-            this.cell.;
+            this.cell.setTail(null);
         this.cell = cell;
         if (cell != null)
-            this.cell.;
+            this.cell.setTail(this);
     }
 
 
