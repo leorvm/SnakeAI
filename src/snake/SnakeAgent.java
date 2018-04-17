@@ -20,14 +20,30 @@ public abstract class SnakeAgent {
     }
 
     protected Perception buildPerception(Environment environment) {
-        // TODO
-
-        return null;
+        return new Perception(
+                environment.getNorthCell(cell),
+                environment.getSouthCell(cell),
+                environment.getEastCell(cell),
+                environment.getWestCell(cell));
     }
 
     protected void execute(Action action, Environment environment)
     {
-        // TODO
+        Cell nextCell = null;
+
+        if (action == Action.NORTH && cell.getLine() != 0) {
+            nextCell = environment.getNorthCell(cell);
+        } else if (action == Action.SOUTH && cell.getLine() != environment.getNumLines() - 1) {
+            nextCell = environment.getSouthCell(cell);
+        } else if (action == Action.WEST && cell.getColumn() != 0) {
+            nextCell = environment.getWestCell(cell);
+        } else if (action == Action.EAST && cell.getColumn() != environment.getNumColumns() - 1) {
+            nextCell = environment.getEastCell(cell);
+        }
+
+        if (nextCell != null && !nextCell.hasAgent()) {
+            setCell(nextCell);
+        }
     }
 
     protected abstract Action decide(Perception perception);
