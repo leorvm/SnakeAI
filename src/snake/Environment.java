@@ -55,9 +55,13 @@ public class Environment {
     }
 
     public void simulate() {
-        // TODO
+        for (int i = 0; i < 100; i++) {
+            for (SnakeAgent agent: agents ) {
+                agent.act(this);
+                fireUpdatedEnvironment();
+            }
+        }
 
-        fireUpdatedEnvironment();
     }
 
     public int getSize() {
