@@ -60,12 +60,16 @@ public class PanelSimulation extends JPanel implements EnvironmentListener {
         SwingWorker worker = new SwingWorker<Void, Void>() {
             @Override
             public Void doInBackground() {
-                int environmentSimulations = mainFrame.getProblem().getNumEvironmentSimulations();
+                try {
+                    int environmentSimulations = mainFrame.getProblem().getNumEvironmentSimulations();
 
-                for (int i = 0; i < environmentSimulations; i++) {
-                    environment.initialize(i);
-                    environmentUpdated();
-                    environment.simulate();
+                    for (int i = 0; i < environmentSimulations; i++) {
+                        environment.initialize(i);
+                        environmentUpdated();
+                        environment.simulate();
+                    }
+                } catch (Exception e1) {
+                    e1.printStackTrace();
                 }
                 return null;
             }
