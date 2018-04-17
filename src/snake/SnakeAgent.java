@@ -42,7 +42,7 @@ public abstract class SnakeAgent {
             nextCell = environment.getEastCell(cell);
         }
 
-        if (nextCell != null && !nextCell.hasAgent()) {
+        if (nextCell != null && !nextCell.hasAgent() && !nextCell.hasTail()) {
             setCell(nextCell);
         }
     }

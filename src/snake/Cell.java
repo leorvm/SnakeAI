@@ -49,6 +49,11 @@ public class Cell {
         this.tail = tail;
     }
 
+    public boolean hasTail(){
+        return tail != null;
+    }
+
+
     public Color getColor() {
         if (hasAgent()) {
             return agent.getColor();
