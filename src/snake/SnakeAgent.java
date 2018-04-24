@@ -1,11 +1,14 @@
 package snake;
 
 import java.awt.Color;
+import java.util.LinkedList;
 
 public abstract class SnakeAgent {
 
     protected Cell cell;
     protected Color color;
+    private LinkedList<Cell> tailList;
+    boolean alive;
 
     public SnakeAgent(Cell cell, Color color) {
         this.cell = cell;
@@ -46,6 +49,27 @@ public abstract class SnakeAgent {
         if (nextCell != null && !nextCell.hasAgent() && !nextCell.hasTail()) {
             setCell(nextCell, environment);
         }
+
+
+
+/*
+        if (nextCell != null && !nextCell.hasAgent() && !nextCell.hasTail()) {
+            if (nextCell.hasFood()) {
+                tailList.add(0, cell);
+                cell.setTail(new Tail(null));
+            } else {
+                if (!tailList.isEmpty()) {
+                tailList.getLast().setTail(null);
+                tailList.removeLast();
+                tailList.add(0, cell);
+                cell.setTail(new Tail(null));
+            }
+        }
+            setCell(nextCell, environment);
+        } else {
+            alive = false;
+        }
+*/
     }
 
     protected abstract Action decide(Perception perception);
