@@ -17,7 +17,7 @@ public class Environment {
     private Food food;
     private final int maxIterations;
 
-    private LinkedList<Tail> tails;
+    //private LinkedList<Tail> tails;
 
     public Environment(
             int size,
@@ -35,7 +35,7 @@ public class Environment {
         this.agents = new ArrayList<>();
         this.random = new Random();
 
-        this.tails = new LinkedList<>();
+        //this.tails = new LinkedList<>();
     }
 
     public void initialize(int seed) {
@@ -81,12 +81,12 @@ public class Environment {
         }
         return null;
     }
-
+/*
     public void addTail(Tail tail) {
         tails.add(tail);
         tail.getCell().setTail(tail);
     }
-
+*/
     public Cell getSouthCell(Cell cell) {
         if (cell.getLine() < grid.length - 1) {
             return grid[cell.getLine() + 1][cell.getColumn()];

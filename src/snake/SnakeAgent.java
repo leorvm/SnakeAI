@@ -14,6 +14,8 @@ public abstract class SnakeAgent {
         this.cell = cell;
         if(cell != null){this.cell.setAgent(this);}
         this.color = color;
+
+        tailList = new LinkedList<>();
     }
 
     public void act(Environment environment) {
@@ -48,9 +50,9 @@ public abstract class SnakeAgent {
 
         if (nextCell != null && !nextCell.hasAgent() && !nextCell.hasTail()) {
             setCell(nextCell, environment);
+        } else {
+            alive = false;
         }
-
-
 
 /*
         if (nextCell != null && !nextCell.hasAgent() && !nextCell.hasTail()) {
@@ -83,17 +85,31 @@ public abstract class SnakeAgent {
             this.cell.setAgent(null);
         }
 
-
         Cell aux = this.cell;
         this.cell = newCell;
+
+
 
         if(newCell.hasFood()) {
             newCell.setFood(null);
             environment.placeFood();
             //aux.setTail(new Tail(null));
-            environment.addTail(new Tail(aux));
 
+
+            tailList.add(0, aux);
+            aux.setTail(new Tail(null));
+            //environment.addTail(new Tail(aux));
+
+        } else {
+            if (!tailList.isEmpty()) {
+                tailList.getLast().setTail(null);
+                tailList.removeLast();
+                tailList.add(0, aux);
+                aux.setTail(new Tail(null));
+            }
         }
+
+
         if (newCell != null) {
             newCell.setAgent(this);
         }
