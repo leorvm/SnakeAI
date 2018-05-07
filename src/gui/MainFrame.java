@@ -139,7 +139,10 @@ public class MainFrame extends JFrame implements GAListener {
         globalPanel.add(simulationPanel, java.awt.BorderLayout.EAST);
         this.getContentPane().add(globalPanel);
 
+
         pack();
+
+
     }
 
     public SnakeProblem getProblem() {
@@ -161,6 +164,7 @@ public class MainFrame extends JFrame implements GAListener {
                 problemPanel.textArea.setText(problem.toString());
                 problemPanel.textArea.setCaretPosition(0);
                 buttonRun.setEnabled(true);
+                problem.getEnvironment().setPanelParameters(panelParameters);
             }
         } catch (IOException e1) {
             e1.printStackTrace(System.err);
@@ -185,6 +189,7 @@ public class MainFrame extends JFrame implements GAListener {
                     Integer.parseInt(panelParameters.textFieldN.getText()),
                     Integer.parseInt(panelParameters.textFieldGenerations.getText()),
                     panelParameters.getSelectionMethod(),
+
                     panelParameters.getRecombinationMethod(),
                     panelParameters.getMutationMethod(),
                     random);

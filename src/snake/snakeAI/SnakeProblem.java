@@ -13,6 +13,7 @@ public class SnakeProblem implements Problem<SnakeIndividual> {
     private static final int NUM_NN_OUTPUTS = 100; // TODO THIS IS A FAKE NUMBER; PLEASE ADAPT TO YOUR CASE
     private static final int GENOME_SIZE = 100; // TODO THIS IS A FAKE NUMBER; PLEASE ADAPT TO YOUR CASE
 
+
     final private int environmentSize;
     final private int maxIterations;
     final private int numInputs;
@@ -33,6 +34,7 @@ public class SnakeProblem implements Problem<SnakeIndividual> {
         this.numHiddenUnits = numHiddenUnits;
         this.numOutputs = NUM_NN_OUTPUTS;
         this.numEnvironmentRuns = numEnvironmentRuns;
+
 
         environment = new Environment(
                 environmentSize,

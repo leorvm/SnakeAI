@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import snake.snakeAI.SnakeIndividual;
 import snake.snakeAI.SnakeProblem;
+import snake.snakeRandom.SnakeRandomAgent;
 
 public class PanelParameters extends PanelAtributesValue {
 
@@ -40,8 +41,8 @@ public class PanelParameters extends PanelAtributesValue {
 
     //TODO - MORE PARAMETERS?
 
-    String[] tiposDeSnake = {"SnakeAdhoc", "SnakeRandom"};
-    JComboBox comboBoxEscolherSnake = new JComboBox(tiposDeSnake);
+
+    JComboBox comboBoxEscolherSnake = new JComboBox();
 
     public PanelParameters() {
         title = "Genetic algorithm parameters";
@@ -79,13 +80,30 @@ public class PanelParameters extends PanelAtributesValue {
 
         labels.add(new JLabel("Escolher tipo da Snake:"));
         valueComponents.add(comboBoxEscolherSnake);
+        comboBoxEscolherSnake.addItem("SnakeAdhoc");
+        comboBoxEscolherSnake.addItem("SnakeRandom");
 
+        getEscolherTipoDeSnake();
         configure();
     }
 
     public void actionPerformedSelectionMethods(ActionEvent e) {
         textFieldTournamentSize.setEnabled(comboBoxSelectionMethods.getSelectedIndex() == 0);
     }
+
+    public int getEscolherTipoDeSnake(){
+
+        int teste = comboBoxEscolherSnake.getSelectedIndex();
+        System.out.println(teste);
+
+        if(teste == 0)
+            return 0;
+        else if(teste == 1)
+            return 1;
+
+        return -1;
+    }
+
 
     public SelectionMethod<SnakeIndividual, SnakeProblem> getSelectionMethod() {
         switch (comboBoxSelectionMethods.getSelectedIndex()) {

@@ -1,5 +1,7 @@
 package snake;
 
+import gui.PanelParameters;
+import gui.PanelSimulation;
 import snake.snakeAdhoc.SnakeAdhocAgent;
 import snake.snakeRandom.SnakeRandomAgent;
 
@@ -16,6 +18,8 @@ public class Environment {
     private final List<SnakeAgent> agents;
     private Food food;
     private final int maxIterations;
+    private PanelParameters panelParameters;
+
 
     //private LinkedList<Tail> tails;
 
@@ -35,7 +39,12 @@ public class Environment {
         this.agents = new ArrayList<>();
         this.random = new Random();
 
+
         //this.tails = new LinkedList<>();
+    }
+
+    public void setPanelParameters(PanelParameters panelParameters){
+        this.panelParameters = panelParameters;
     }
 
     public void initialize(int seed) {
@@ -47,12 +56,21 @@ public class Environment {
 
     // TODO MODIFY TO PLACE ADHOC OR AI SNAKE AGENTS
     private void placeAgents() {
-       // SnakeRandomAgent snakeRandomAgent = new SnakeRandomAgent(new Cell(random.nextInt(grid.length), random.nextInt(grid.length)), Color.GREEN);
-       // agents.add(snakeRandomAgent);
-        SnakeAdhocAgent snakeAdhocAgent = new SnakeAdhocAgent(grid[random.nextInt(grid.length)][random.nextInt(grid.length)], Color.BLACK);
-        agents.add(snakeAdhocAgent);
+
+        int teste = panelParameters.getEscolherTipoDeSnake();
+
+        if(teste == 0){
+            SnakeAdhocAgent snakeAdhocAgent = new SnakeAdhocAgent(grid[random.nextInt(grid.length)][random.nextInt(grid.length)], Color.BLACK);
+            agents.add(snakeAdhocAgent);
 
 
+        }else if(teste == 1){
+
+
+            SnakeRandomAgent snakeRandomAgent = new SnakeRandomAgent(new Cell(random.nextInt(grid.length), random.nextInt(grid.length)), Color.GREEN);
+            agents.add(snakeRandomAgent);
+
+        }
     }
 
     public void placeFood() {
