@@ -21,11 +21,11 @@ public class SnakeAdhocAgent extends SnakeAgent {
 
         if(n != null && n.hasFood())
             return Action.NORTH;
-        if(s != null && s.hasFood())
+        else if(s != null && s.hasFood())
             return Action.SOUTH;
-        if(e != null && e.hasFood())
+        else if(e != null && e.hasFood())
             return Action.EAST;
-        if(w != null && w.hasFood())
+        else if(w != null && w.hasFood())
             return Action.WEST;
 
         int snakeLine = this.cell.getLine();
@@ -38,11 +38,20 @@ public class SnakeAdhocAgent extends SnakeAgent {
             return Action.SOUTH;
         else if(snakeLine > foodLine && n != null && !n.hasAgent() && !n.hasTail())
             return Action.NORTH;
-        else if(snakeColumn < foodColumn && e != null && !e.hasAgent() && !e.hasTail())
+        else if(snakeColumn <= foodColumn && e != null && !e.hasAgent() && !e.hasTail())
             return Action.EAST;
-        else if(w != null && !w.hasAgent() && !w.hasTail())
+        else if((snakeColumn >= foodColumn && w != null && !w.hasAgent() && !w.hasTail()))
             return Action.WEST;
 
+
+        if(n != null && !n.hasTail() && !n.hasAgent())
+            return Action.NORTH;
+        else if(s != null && !s.hasTail() &&  !s.hasAgent())
+            return Action.SOUTH;
+        else if(e != null && !e.hasTail() &&  !e.hasAgent())
+            return Action.EAST;
+        else if(w != null && !w.hasTail() &&  !w.hasAgent())
+            return Action.WEST;
 
         return null;
     }
