@@ -63,6 +63,8 @@ public class PanelSimulation extends JPanel implements EnvironmentListener {
                         environment.initialize(i);
                         environmentUpdated();
                         environment.simulate();
+
+                        //break;
                     }
                 } catch (Exception e1) {
                     e1.printStackTrace();
