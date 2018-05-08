@@ -87,7 +87,7 @@ public class Environment {
                 agent.act(this);
                 fireUpdatedEnvironment();
                 if(!agent.isAlive())
-                    break;
+                    return;
             }
         }
 

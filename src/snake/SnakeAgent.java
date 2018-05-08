@@ -14,7 +14,7 @@ public abstract class SnakeAgent {
         this.cell = cell;
         if(cell != null){this.cell.setAgent(this);}
         this.color = color;
-
+        alive = true;
         tailList = new LinkedList<>();
     }
 
@@ -56,6 +56,7 @@ public abstract class SnakeAgent {
             setCell(nextCell, environment);
         } else {
             alive = false;
+            System.out.println("dead snake");
         }
     }
 
