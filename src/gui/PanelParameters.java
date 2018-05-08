@@ -92,16 +92,7 @@ public class PanelParameters extends PanelAtributesValue {
     }
 
     public int getEscolherTipoDeSnake(){
-
-        int teste = comboBoxEscolherSnake.getSelectedIndex();
-        System.out.println(teste);
-
-        if(teste == 0)
-            return 0;
-        else if(teste == 1)
-            return 1;
-
-        return -1;
+        return comboBoxEscolherSnake.getSelectedIndex();
     }
 
 
