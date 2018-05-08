@@ -18,6 +18,10 @@ public abstract class SnakeAgent {
         tailList = new LinkedList<>();
     }
 
+    public boolean isAlive() {
+        return alive;
+    }
+
     public void act(Environment environment) {
         Perception perception = buildPerception(environment);
         Action action = decide(perception);
@@ -53,25 +57,6 @@ public abstract class SnakeAgent {
         } else {
             alive = false;
         }
-
-/*
-        if (nextCell != null && !nextCell.hasAgent() && !nextCell.hasTail()) {
-            if (nextCell.hasFood()) {
-                tailList.add(0, cell);
-                cell.setTail(new Tail(null));
-            } else {
-                if (!tailList.isEmpty()) {
-                tailList.getLast().setTail(null);
-                tailList.removeLast();
-                tailList.add(0, cell);
-                cell.setTail(new Tail(null));
-            }
-        }
-            setCell(nextCell, environment);
-        } else {
-            alive = false;
-        }
-*/
     }
 
     protected abstract Action decide(Perception perception);

@@ -10,10 +10,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.SwingWorker;
+import javax.swing.*;
 
 public class PanelSimulation extends JPanel implements EnvironmentListener {
 
@@ -49,7 +46,6 @@ public class PanelSimulation extends JPanel implements EnvironmentListener {
     }
 
     public void jButtonSimulate_actionPerformed(ActionEvent e) {
-
         environment = mainFrame.getProblem().getEnvironment();
         environment.addEnvironmentListener(this);
 

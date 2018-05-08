@@ -86,6 +86,8 @@ public class Environment {
             for (SnakeAgent agent: agents ) {
                 agent.act(this);
                 fireUpdatedEnvironment();
+                if(!agent.isAlive())
+                    break;
             }
         }
 
