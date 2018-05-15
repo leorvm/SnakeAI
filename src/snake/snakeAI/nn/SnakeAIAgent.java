@@ -3,6 +3,7 @@ package snake.snakeAI.nn;
 import snake.*;
 
 import java.awt.Color;
+import java.util.Random;
 
 public class SnakeAIAgent extends SnakeAgent {
    
@@ -57,6 +58,7 @@ public class SnakeAIAgent extends SnakeAgent {
      */
     public void setWeights(double[] weights) {
         // TODO
+
     }
     
     /**
@@ -66,6 +68,7 @@ public class SnakeAIAgent extends SnakeAgent {
      */
     private void forwardPropagation() {
         // TODO
+
     }
 
     @Override
