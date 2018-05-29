@@ -57,7 +57,7 @@ public class SnakeAIAgent extends SnakeAgent {
      * @param weights vector of weights comming from the individual.
      */
     public void setWeights(double[] weights) {
-        // TODO
+
 
     }
     

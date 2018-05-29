@@ -76,12 +76,12 @@ public class PanelParameters extends PanelAtributesValue {
         labels.add(new JLabel("Mutation prob.: "));
         valueComponents.add(textFieldProbMutation);
 
-        //TODO - MORE PARAMETERS?
 
         labels.add(new JLabel("Escolher tipo da Snake:"));
         valueComponents.add(comboBoxEscolherSnake);
         comboBoxEscolherSnake.addItem("SnakeAdhoc");
         comboBoxEscolherSnake.addItem("SnakeRandom");
+        comboBoxEscolherSnake.addItem("SnakeAI");
 
         getEscolherTipoDeSnake();
         configure();

@@ -1,10 +1,13 @@
 package snake.snakeAI;
 
+import snake.Environment;
 import snake.snakeAI.ga.RealVectorIndividual;
+import snake.snakeAI.nn.SnakeAIAgent;
 
 public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeIndividual> {
 
-
+    public int movements;
+    public int food;
 
     public SnakeIndividual(SnakeProblem problem, int size /*TODO?*/) {
         super(problem, size);
@@ -13,16 +16,31 @@ public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeInd
 
     public SnakeIndividual(SnakeIndividual original) {
         super(original);
-
+        movements = original.movements;
+        food = original.food;
     }
 
     @Override
     public double computeFitness() {
+        Environment environment = problem.getEnvironment();
 
-        for(int i = 0; i < 10; i++)
+        movements = 0;
+        food = 0;
+
+        for(int i = 0; i < problem.getNumEvironmentSimulations(); i++)
         {
+            environment.initialize(i);
+            SnakeAIAgent agent =  (SnakeAIAgent) environment.getAgents().get(0);
+            agent.setWeights(genome);
+            environment.simulate();
 
+            movements += environment.getMovements();
+            food = environment.getFoodsEaten();
         }
+
+        fitness = food * 5 + movements * 2;
+
+        return fitness;
     }
 
     public double[] getGenome(){
@@ -34,7 +52,10 @@ public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeInd
         StringBuilder sb = new StringBuilder();
         sb.append("\nfitness: ");
         sb.append(fitness);
-        //TODO
+        sb.append("\nmovements: ");
+        sb.append(movements);
+        sb.append("\nfood eaten: ");
+        sb.append(food);
         return sb.toString();
     }
 

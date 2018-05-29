@@ -86,6 +86,8 @@ public abstract class SnakeAgent {
             aux.setTail(new Tail(null));
             //environment.addTail(new Tail(aux));
 
+            environment.incrementFoodsEaten();
+
         } else {
             if (!tailList.isEmpty()) {
                 tailList.getLast().setTail(null);

@@ -8,7 +8,7 @@ public class MutationMUTATION_NAME <I extends RealVectorIndividual> extends Muta
 
     //double upper, lower;
    
-    public MutationMUTATION_NAME(double probability,/* double upper, double lower*/ /*TODO?*/) {
+    public MutationMUTATION_NAME(double probability/* ,double upper, double lower*/ /*TODO?*/) {
         super(probability);
         // TODO
         //this.upper = upper;

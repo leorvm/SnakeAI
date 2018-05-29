@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class SnakeRandomAgent extends SnakeAgent {
-    // TODO
 
     private ArrayList<Character> pickRandomPosition = new ArrayList<>();
     private Random random = new Random();
