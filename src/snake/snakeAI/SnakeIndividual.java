@@ -4,6 +4,8 @@ import snake.snakeAI.ga.RealVectorIndividual;
 
 public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeIndividual> {
 
+
+
     public SnakeIndividual(SnakeProblem problem, int size /*TODO?*/) {
         super(problem, size);
         //TODO?
@@ -11,18 +13,20 @@ public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeInd
 
     public SnakeIndividual(SnakeIndividual original) {
         super(original);
-        //TODO
+
     }
 
     @Override
     public double computeFitness() {
-        //TODO
-        return 0;
+
+        for(int i = 0; i < 10; i++)
+        {
+
+        }
     }
 
     public double[] getGenome(){
-        //TODO
-        return null;
+        return genome;
     }
 
     @Override
@@ -42,8 +46,7 @@ public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeInd
      */
     @Override
     public int compareTo(SnakeIndividual i) {
-        //TODO
-        return 0;
+        return Double.compare(i.computeFitness(), computeFitness());
     }
 
     @Override
