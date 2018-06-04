@@ -23,11 +23,10 @@ public class Tail {
     }
 
     public void setCell(Cell cell) {
-        if (this.cell != null)
-            this.cell.setTail(null);
+        this.cell.setTail(null);
         this.cell = cell;
-        if (cell != null)
-            this.cell.setTail(this);
+        this.cell.setTail(this);
+
     }
 
 

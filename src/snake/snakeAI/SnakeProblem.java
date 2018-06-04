@@ -89,6 +89,9 @@ public class SnakeProblem implements Problem<SnakeIndividual> {
                 numEnvironmentRuns);
     }
 
+    public static int getGenomeSize() {
+        return GENOME_SIZE;
+    }
     // MODIFY IF YOU DEFINE OTHER PARAMETERS
     @Override
     public String toString() {

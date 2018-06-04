@@ -6,8 +6,8 @@ import java.awt.*;
 
 
 public class SnakeAdhocAgent extends SnakeAgent {
-    public SnakeAdhocAgent(Cell cell, Color color) {
-        super(cell, color);
+    public SnakeAdhocAgent(Cell cell, Color color, Environment environment) {
+        super(cell, color, environment);
     }
 
     @Override

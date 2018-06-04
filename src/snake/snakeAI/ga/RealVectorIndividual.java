@@ -16,7 +16,7 @@ public abstract class RealVectorIndividual <P extends Problem, I extends RealVec
     public RealVectorIndividual(RealVectorIndividual<P, I> original) {
         super(original);
 
-        genome = new double[original.genome.length];
+        this.genome = new double[original.genome.length];
         System.arraycopy(original.genome, 0, genome, 0, genome.length);
     }
     

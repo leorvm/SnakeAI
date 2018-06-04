@@ -7,20 +7,19 @@ public abstract class SnakeAgent {
 
     protected Cell cell;
     protected Color color;
-    private LinkedList<Cell> tailList;
-    boolean alive;
+    private LinkedList<Tail> tailList;
+    protected Environment environment;
 
-    public SnakeAgent(Cell cell, Color color) {
+    public SnakeAgent(Cell cell, Color color, Environment environment) {
         this.cell = cell;
         if(cell != null){this.cell.setAgent(this);}
         this.color = color;
-        alive = true;
-        tailList = new LinkedList<>();
+       // alive = true;
+        this.environment = environment;
+        this.tailList = new LinkedList<>();
     }
 
-    public boolean isAlive() {
-        return alive;
-    }
+
 
     public void act(Environment environment) {
         Perception perception = buildPerception(environment);
@@ -54,18 +53,17 @@ public abstract class SnakeAgent {
 
         if (nextCell != null && !nextCell.hasAgent() && !nextCell.hasTail()) {
             if (nextCell.hasFood()) {
-                tailList.addFirst(cell);
+                tailList.addFirst(new Tail(cell));
                 environment.incrementFoodsEaten();
             } else {
                 if (!tailList.isEmpty()) {
-                    tailList.addFirst(cell);
-                    tailList.getLast().setTail(null);
+                    tailList.addFirst(new Tail(cell));
+                    tailList.getLast().getCell().setTail(null);
                     tailList.removeLast();
                 }
             }
-            setCell(nextCell, environment);
+            setCell(nextCell);
         } else {
-            alive = false;
             environment.setAlive(false);
         }
     }
@@ -76,7 +74,7 @@ public abstract class SnakeAgent {
         return cell;
     }
 
-    public void setCell(Cell newCell, Environment environment) {
+    public void setCell(Cell newCell) {
         if (this.cell != null) {
             this.cell.setAgent(null);
         }
@@ -95,8 +93,8 @@ public abstract class SnakeAgent {
     }
 
     public void removeTails() {
-        for (Cell c : tailList)
-            c.setTail(null);
+        for (Tail tail : tailList)
+            tail.getCell().setTail(null);
         tailList.clear();
 
     }

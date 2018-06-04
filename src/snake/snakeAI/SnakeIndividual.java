@@ -19,9 +19,9 @@ public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeInd
 
     public SnakeIndividual(SnakeIndividual original) {
         super(original);
-        movements = original.movements;
-        food = original.food;
-        fitness = original.fitness;
+        this.movements = original.movements;
+        this.food = original.food;
+        this.fitness = original.fitness;
     }
 
     @Override

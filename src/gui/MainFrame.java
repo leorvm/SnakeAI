@@ -172,7 +172,12 @@ public class MainFrame extends JFrame implements GAListener {
                 problem = SnakeProblem.buildProblemFromFile(dataSet);
                 problemPanel.textArea.setText(problem.toString());
                 problemPanel.textArea.setCaretPosition(0);
-                buttonRun.setEnabled(true);
+                if (panelParameters.getEscolherTipoDeSnake() == 0 || panelParameters.getEscolherTipoDeSnake() == 1) {
+                    setJButtonSimulateEnabled(true);
+                } else {
+                    buttonRun.setEnabled(true);
+                }
+                isDataSet = true;
                 problem.getEnvironment().setPanelParameters(panelParameters);
             }
         } catch (IOException e1) {

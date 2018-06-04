@@ -30,7 +30,9 @@ public class Environment {
 
     private boolean alive;
 
-//private LinkedList<Tail> tails;
+    private int tipoSnake;
+
+  //private LinkedList<Tail> tails;
 
     public Environment(
             int size,
@@ -47,10 +49,14 @@ public class Environment {
 
         this.agents = new ArrayList<>();
         this.random = new Random();
+        this. movements=0;
+        this.foodsEaten = 0;
+        this.panelParameters = null;
         this.numInputs = numInputs;
         this.numOutputs = numOutputs;
         this.numHiddenLayer = numHiddenLayer;
         this.alive = true;
+        this.tipoSnake = 0;
     }
 
     public void setPanelParameters(PanelParameters panelParameters){
@@ -80,26 +86,30 @@ public class Environment {
     }
 
     private void placeAgents() {
+       tipoSnake = panelParameters.getEscolherTipoDeSnake();
+       agents.clear();
 
-        int tipoSnake = panelParameters.getEscolherTipoDeSnake();
-        agents.clear();
-        switch (tipoSnake) {
+       switch (tipoSnake) {
             case 0:
                 SnakeAdhocAgent snakeAdhocAgent = new SnakeAdhocAgent(grid[random.nextInt(grid.length)][random.nextInt(grid.length)]
-                        , Color.BLACK);
+                        , Color.BLACK, this);
                 agents.add(snakeAdhocAgent);
                 break;
             case 1:
                 SnakeRandomAgent snakeRandomAgent = new SnakeRandomAgent(new Cell(random.nextInt(grid.length), random.nextInt(grid.length))
-                        , Color.GREEN);
+                , Color.GREEN, this);
                 agents.add(snakeRandomAgent);
+
                 break;
             case 2:
                 SnakeAIAgent snakeAIAgent = new SnakeAIAgent(grid[random.nextInt(grid.length)][random.nextInt(grid.length)]
-                        , numInputs, numHiddenLayer, numOutputs);
+                        , numInputs, numHiddenLayer, numOutputs, this);
                 agents.add(snakeAIAgent);
                 break;
         }
+    }
+    public int getTipoSnake() {
+        return tipoSnake;
     }
 
     public void placeFood() {

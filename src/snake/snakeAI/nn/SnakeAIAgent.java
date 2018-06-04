@@ -36,8 +36,9 @@ public class SnakeAIAgent extends SnakeAgent {
             Cell cell,
             int inputLayerSize,
             int hiddenLayerSize,
-            int outputLayerSize) {
-        super(cell, Color.BLUE);
+            int outputLayerSize,
+            Environment environment) {
+        super(cell, Color.BLUE, environment);
         this.inputLayerSize = inputLayerSize;
         this.hiddenLayerSize = hiddenLayerSize;
         this.outputLayerSize = outputLayerSize;
@@ -61,11 +62,13 @@ public class SnakeAIAgent extends SnakeAgent {
         for (int i = 0; i < inputLayerSize; i++) {
             for (int j = 0; j < hiddenLayerSize; j++) {
                 w1[i][j] = weights[w++];
+
             }
         }
         for (int i = 0; i < hiddenLayerSize + 1; i++) {
             for (int j = 0; j < outputLayerSize; j++) {
                 w2[i][j] = weights[w++];
+
             }
         }
     }

@@ -1,5 +1,6 @@
 package snake.snakeRandom;
 
+import org.omg.IOP.ENCODING_CDR_ENCAPS;
 import snake.*;
 
 import java.awt.*;
@@ -8,11 +9,13 @@ import java.util.Random;
 
 public class SnakeRandomAgent extends SnakeAgent {
 
-    private ArrayList<Character> pickRandomPosition = new ArrayList<>();
-    private Random random = new Random();
+    private ArrayList<Character> pickRandomPosition ;
+    private Random random ;
 
-    public SnakeRandomAgent(Cell cell, Color color) {
-        super(cell, color);
+    public SnakeRandomAgent(Cell cell, Color color, Environment environment) {
+        super(cell, color, environment);
+        pickRandomPosition = new ArrayList<>(0);
+        random = new Random();
     }
 
     @Override
@@ -54,7 +57,7 @@ public class SnakeRandomAgent extends SnakeAgent {
         }else if(randomDirection == 'w'){
             return Action.WEST;
         }
-
+        environment.setAlive(false);
         return null;
     }
 }

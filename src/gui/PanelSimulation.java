@@ -63,7 +63,12 @@ public class PanelSimulation extends JPanel implements EnvironmentListener {
                         environment.initialize(i);
                         environmentUpdated();
 
-                        environment.setWeights(mainFrame.getBestInRun().getGenome());
+                        if (!(environment.getTipoSnake() == 0 || environment.getTipoSnake() == 1)) {
+                            //TODO: if (environment.getAgents().size() == 1)
+                            environment.setWeights(mainFrame.getBestInRun().getGenome());
+                        }
+
+
 
                         environment.simulate();
 
