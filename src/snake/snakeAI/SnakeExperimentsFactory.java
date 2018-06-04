@@ -7,6 +7,7 @@ import snake.snakeAI.ga.geneticOperators.*;
 import snake.snakeAI.ga.selectionMethods.*;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Random;
 import snake.snakeAI.ga.statistics.StatisticBestAverage;
@@ -63,7 +64,7 @@ public class SnakeExperimentsFactory extends ExperimentsFactory {
         double mutationProbability = Double.parseDouble(getParameterValue("Mutation probability"));
         if (getParameterValue("Mutation").equals("uniform_distribution")) {
             //TODO OTHER PARAMETERS TO YOUR MUTATION OPERATOR, IF THEY EXIST, ARE FETCHED HERE
-            mutation = new MutationMUTATION_NAME<>(mutationProbability /*TODO COMPLETE?*/);
+            mutation = new MutationOne<>(mutationProbability /*TODO COMPLETE?*/);
         }
 
         //PROBLEM 
@@ -113,6 +114,7 @@ public class SnakeExperimentsFactory extends ExperimentsFactory {
 
     private String buildTextualExperiment() {
         StringBuilder sb = new StringBuilder();
+        sb.append("Timestamp: " + new Timestamp(System.currentTimeMillis()) + "\t");
         sb.append("Population size:" + populationSize + "\t");
         sb.append("Max generations:" + maxGenerations + "\t");
         sb.append("Selection:" + selection + "\t");

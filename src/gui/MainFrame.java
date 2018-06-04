@@ -44,6 +44,8 @@ public class MainFrame extends JFrame implements GAListener {
 
     private PanelSimulation simulationPanel;
 
+    private boolean isDataSet;
+
     public MainFrame() {
         try {
             jbInit();
@@ -142,7 +144,14 @@ public class MainFrame extends JFrame implements GAListener {
 
         pack();
 
+        panelParameters.setMainFrame(this);
+        setJButtonSimulateEnabled(false);
+        isDataSet = false;
 
+    }
+
+    public boolean isDataSet() {
+        return isDataSet;
     }
 
     public SnakeProblem getProblem() {
@@ -189,7 +198,6 @@ public class MainFrame extends JFrame implements GAListener {
                     Integer.parseInt(panelParameters.textFieldN.getText()),
                     Integer.parseInt(panelParameters.textFieldGenerations.getText()),
                     panelParameters.getSelectionMethod(),
-
                     panelParameters.getRecombinationMethod(),
                     panelParameters.getMutationMethod(),
                     random);
@@ -313,6 +321,10 @@ public class MainFrame extends JFrame implements GAListener {
         buttonExperiments.setEnabled(experiments);
         buttonRunExperiments.setEnabled(runExperiments);
         simulationPanel.setJButtonSimulateEnabled(runEnvironment);
+    }
+
+    public void setJButtonSimulateEnabled(boolean enabled) {
+        simulationPanel.setJButtonSimulateEnabled(enabled);
     }
 }
 

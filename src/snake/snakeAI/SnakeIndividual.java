@@ -6,6 +6,9 @@ import snake.snakeAI.nn.SnakeAIAgent;
 
 public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeIndividual> {
 
+    private static final double MOVEMENT_POINTS = 0.0001;
+    private static final int FOOD_POINTS = 1;
+
     public int movements;
     public int food;
 
@@ -18,27 +21,31 @@ public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeInd
         super(original);
         movements = original.movements;
         food = original.food;
+        fitness = original.fitness;
     }
 
     @Override
     public double computeFitness() {
         Environment environment = problem.getEnvironment();
-
+        fitness = 0;
         movements = 0;
         food = 0;
 
         for(int i = 0; i < problem.getNumEvironmentSimulations(); i++)
         {
             environment.initialize(i);
+
             SnakeAIAgent agent =  (SnakeAIAgent) environment.getAgents().get(0);
+
             agent.setWeights(genome);
+
             environment.simulate();
 
             movements += environment.getMovements();
-            food = environment.getFoodsEaten();
+            food += environment.getFoodsEaten();
         }
 
-        fitness = food * 5 + movements * 2;
+        fitness = food * FOOD_POINTS + movements * MOVEMENT_POINTS;
 
         return fitness;
     }
@@ -53,9 +60,9 @@ public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeInd
         sb.append("\nfitness: ");
         sb.append(fitness);
         sb.append("\nmovements: ");
-        sb.append(movements);
+        sb.append((double)movements/problem.getNumEvironmentSimulations());
         sb.append("\nfood eaten: ");
-        sb.append(food);
+        sb.append((double)food/problem.getNumEvironmentSimulations());
         return sb.toString();
     }
 
@@ -67,7 +74,11 @@ public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeInd
      */
     @Override
     public int compareTo(SnakeIndividual i) {
-        return Double.compare(i.computeFitness(), computeFitness());
+        if (this.getFitness() > i.getFitness())
+            return 1;
+        if (this.getFitness() < i.getFitness())
+            return -1;
+        return 0;
     }
 
     @Override

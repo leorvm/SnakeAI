@@ -13,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import snake.snakeAI.SnakeIndividual;
 import snake.snakeAI.SnakeProblem;
-import snake.snakeRandom.SnakeRandomAgent;
 
 public class PanelParameters extends PanelAtributesValue {
 
@@ -25,7 +24,7 @@ public class PanelParameters extends PanelAtributesValue {
     public static final String GENERATIONS = "1000";
     public static final String TOURNAMENT_SIZE = "4";
     public static final String PROB_RECOMBINATION = "0.7";
-    public static final String PROB_MUTATION = "0.7";
+    public static final String PROB_MUTATION = "0.01";
 
     JTextField textFieldSeed = new JTextField(SEED, TEXT_FIELD_LENGHT);
     JTextField textFieldN = new JTextField(POPULATION_SIZE, TEXT_FIELD_LENGHT);
@@ -43,6 +42,7 @@ public class PanelParameters extends PanelAtributesValue {
 
 
     JComboBox comboBoxEscolherSnake = new JComboBox();
+    private MainFrame mainFrame;
 
     public PanelParameters() {
         title = "Genetic algorithm parameters";
@@ -95,6 +95,10 @@ public class PanelParameters extends PanelAtributesValue {
         return comboBoxEscolherSnake.getSelectedIndex();
     }
 
+    public void setMainFrame(MainFrame mainFrame) {
+        configure();
+        this.mainFrame = mainFrame;
+    }
 
     public SelectionMethod<SnakeIndividual, SnakeProblem> getSelectionMethod() {
         switch (comboBoxSelectionMethods.getSelectedIndex()) {
@@ -128,7 +132,7 @@ public class PanelParameters extends PanelAtributesValue {
     public Mutation<SnakeIndividual> getMutationMethod() {
         double mutationProbability = Double.parseDouble(textFieldProbMutation.getText());
         //TODO
-        return new MutationMUTATION_NAME<>(mutationProbability/*TODO?*/);
+        return new MutationOne<>(mutationProbability/*TODO?*/);
     }
 }
 

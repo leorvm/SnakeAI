@@ -53,10 +53,20 @@ public abstract class SnakeAgent {
         }
 
         if (nextCell != null && !nextCell.hasAgent() && !nextCell.hasTail()) {
+            if (nextCell.hasFood()) {
+                tailList.addFirst(cell);
+                environment.incrementFoodsEaten();
+            } else {
+                if (!tailList.isEmpty()) {
+                    tailList.addFirst(cell);
+                    tailList.getLast().setTail(null);
+                    tailList.removeLast();
+                }
+            }
             setCell(nextCell, environment);
         } else {
             alive = false;
-            System.out.println("dead snake");
+            environment.setAlive(false);
         }
     }
 
@@ -70,40 +80,24 @@ public abstract class SnakeAgent {
         if (this.cell != null) {
             this.cell.setAgent(null);
         }
-
-        Cell aux = this.cell;
         this.cell = newCell;
-
-
-
-        if(newCell.hasFood()) {
-            newCell.setFood(null);
-            environment.placeFood();
-            //aux.setTail(new Tail(null));
-
-
-            tailList.add(0, aux);
-            aux.setTail(new Tail(null));
-            //environment.addTail(new Tail(aux));
-
-            environment.incrementFoodsEaten();
-
-        } else {
-            if (!tailList.isEmpty()) {
-                tailList.getLast().setTail(null);
-                tailList.removeLast();
-                tailList.add(0, aux);
-                aux.setTail(new Tail(null));
-            }
-        }
-
-
         if (newCell != null) {
             newCell.setAgent(this);
+        }
+        if (cell.hasFood()) {
+            cell.setFood(null);
+            environment.placeFood();
         }
     }    
     
     public Color getColor() {
         return color;
+    }
+
+    public void removeTails() {
+        for (Cell c : tailList)
+            c.setTail(null);
+        tailList.clear();
+
     }
 }
