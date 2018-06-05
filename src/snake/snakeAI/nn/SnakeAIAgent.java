@@ -128,6 +128,7 @@ public class SnakeAIAgent extends SnakeAgent {
         inputs[12] = cell.getColumn()> food.getColumn() ? 1 : 0;
 
 
+
         forwardPropagation();
 
         if(output[0]==1)
