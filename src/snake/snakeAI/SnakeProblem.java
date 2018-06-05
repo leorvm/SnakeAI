@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SnakeProblem implements Problem<SnakeIndividual> {
-    private static final int NUM_NN_INPUTS = 17;
+    private static final int NUM_NN_INPUTS = 13;
     private static final int NUM_NN_OUTPUTS = 4;
 
     private static final int GENOME_SIZE = 0; // TODO THIS IS A FAKE NUMBER; PLEASE ADAPT TO YOUR CASE

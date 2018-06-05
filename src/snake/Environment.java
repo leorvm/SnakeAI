@@ -3,6 +3,8 @@ package snake;
 import gui.PanelParameters;
 import gui.PanelSimulation;
 import snake.snakeAI.nn.SnakeAIAgent;
+import snake.snakeAI.nn.SnakeAIAgentA;
+import snake.snakeAI.nn.SnakeAIAgentB;
 import snake.snakeAdhoc.SnakeAdhocAgent;
 import snake.snakeRandom.SnakeRandomAgent;
 
@@ -102,10 +104,26 @@ public class Environment {
 
                 break;
             case 2:
-                SnakeAIAgent snakeAIAgent = new SnakeAIAgent(grid[random.nextInt(grid.length)][random.nextInt(grid.length)]
+                SnakeAIAgent snakeAIAgentA = new SnakeAIAgentA(grid[random.nextInt(grid.length)][random.nextInt(grid.length)]
                         , numInputs, numHiddenLayer, numOutputs, this);
-                agents.add(snakeAIAgent);
+                agents.add(snakeAIAgentA);
                 break;
+           case 3:
+               SnakeAIAgent snakeAIAgentCase3 = new SnakeAIAgentA(grid[random.nextInt(grid.length)][random.nextInt(grid.length)]
+                       , numInputs, numHiddenLayer, numOutputs, this);
+               agents.add(snakeAIAgentCase3);
+               snakeAIAgentCase3 = new SnakeAIAgentA(grid[random.nextInt(grid.length)][random.nextInt(grid.length)]
+                       , numInputs, numHiddenLayer, numOutputs, this);
+               agents.add(snakeAIAgentCase3);
+               break;
+           case 4:
+               SnakeAIAgent snakeAIAgentCase4A = new SnakeAIAgentA(grid[random.nextInt(grid.length)][random.nextInt(grid.length)]
+                       , numInputs, numHiddenLayer, numOutputs, this);
+               agents.add(snakeAIAgentCase4A);
+               SnakeAIAgent snakeAIAgentCase4B = new SnakeAIAgentB(grid[random.nextInt(grid.length)][random.nextInt(grid.length)]
+                       , numInputs, numHiddenLayer, numOutputs, this);
+               agents.add(snakeAIAgentCase4B);
+               break;
         }
     }
     public int getTipoSnake() {

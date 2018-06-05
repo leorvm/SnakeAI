@@ -1,12 +1,15 @@
 package snake.snakeAI;
 
 import snake.Environment;
+import snake.SnakeAgent;
 import snake.snakeAI.ga.RealVectorIndividual;
 import snake.snakeAI.nn.SnakeAIAgent;
 
+import java.util.List;
+
 public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeIndividual> {
 
-    private static final double MOVEMENT_POINTS = 0.0001;
+    private static final double MOVEMENT_POINTS = 0.001;
     private static final int FOOD_POINTS = 1;
 
     public int movements;
@@ -35,9 +38,9 @@ public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeInd
         {
             environment.initialize(i);
 
-            SnakeAIAgent agent =  (SnakeAIAgent) environment.getAgents().get(0);
-
-            agent.setWeights(genome);
+            for (SnakeAgent agent: environment.getAgents()) {
+                ((SnakeAIAgent) agent).setWeights(genome);
+            }
 
             environment.simulate();
 

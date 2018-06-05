@@ -5,32 +5,32 @@ import snake.*;
 import java.awt.Color;
 import java.util.Random;
 
-public class SnakeAIAgent extends SnakeAgent {
+public abstract class SnakeAIAgent extends SnakeAgent {
    
-    final private int inputLayerSize;
-    final private int hiddenLayerSize;
-    final private int outputLayerSize;
+    final protected int inputLayerSize;
+    final protected int hiddenLayerSize;
+    final protected int outputLayerSize;
 
     /**
      * Network inputs array.
      */
-    final private int[] inputs;
+    final protected int[] inputs;
     /**
      * Hiddden layer weights.
      */
-    final private double[][] w1;
+    final protected double[][] w1;
     /**
      * Output layer weights.
      */
-    final private double[][] w2;
+    final protected double[][] w2;
     /**
      * Hidden layer activation values.
      */
-    final private double[] hiddenLayerOutput;
+    final protected double[] hiddenLayerOutput;
     /**
      * Output layer activation values.
      */
-    final private int[] output;
+    final protected int[] output;
 
     public SnakeAIAgent(
             Cell cell,
@@ -78,7 +78,7 @@ public class SnakeAIAgent extends SnakeAgent {
      * vector "inputs".
      *
      */
-    private void forwardPropagation() {
+    protected void forwardPropagation() {
         double sum;
         double maxValue = Double.MIN_VALUE;
         int posM = 0;
@@ -101,43 +101,5 @@ public class SnakeAIAgent extends SnakeAgent {
             }
         }
         output[posM] = 1;
-    }
-
-    @Override
-    protected Action decide(Perception perception) {
-        Cell food = perception.getFood();
-        Cell n = perception.getN();
-        Cell e = perception.getE();
-        Cell s = perception.getS();
-        Cell w = perception.getW();
-
-        inputs[0] = n != null && n.hasFood() ? 1 : 0;
-        inputs[1] = e != null && e.hasFood() ? 1 : 0;
-        inputs[2] = s != null && s.hasFood() ? 1 : 0;
-        inputs[3] = w != null && w.hasFood() ? 1 : 0;
-
-        inputs[4] = n != null && !n.hasTail() && !n.hasAgent() ? 1 : 0;
-        inputs[5] = e != null && !e.hasTail() && !e.hasAgent() ? 1 : 0;
-        inputs[6] = s != null && !s.hasTail() && !s.hasAgent() ? 1 : 0;
-        inputs[7] = w != null && !w.hasTail() && !w.hasAgent() ? 1 : 0;
-
-
-        inputs[9] =  cell.getLine()> food.getLine() ? 1 : 0;
-        inputs[10] = cell.getColumn()< food.getColumn() ? 1 : 0;
-        inputs[11] = cell.getLine()< food.getLine() ? 1 : 0;
-        inputs[12] = cell.getColumn()> food.getColumn() ? 1 : 0;
-
-
-
-        forwardPropagation();
-
-        if(output[0]==1)
-            return Action.NORTH;
-        if(output[1]==1)
-            return Action.EAST;
-        if(output[2]==1)
-            return Action.SOUTH;
-        else
-            return Action.WEST;
     }
 }
