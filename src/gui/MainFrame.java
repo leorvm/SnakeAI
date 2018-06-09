@@ -31,7 +31,7 @@ public class MainFrame extends JFrame implements GAListener {
     private SnakeExperimentsFactory experimentsFactory;
     private PanelTextArea problemPanel;
     private PanelTextArea bestIndividualPanel;
-    private PanelParameters panelParameters = new PanelParameters();
+        private PanelParameters panelParameters = new PanelParameters();
     private JButton buttonDataSet = new JButton("Data set");
     private JButton buttonRun = new JButton("Run");
     private JButton buttonStop = new JButton("Stop");
@@ -286,7 +286,7 @@ public class MainFrame extends JFrame implements GAListener {
                     while (experimentsFactory.hasMoreExperiments()) {
                         try {
 
-                            Experiment experiment = experimentsFactory.nextExperiment();
+                            Experiment experiment = experimentsFactory.nextExperiment(panelParameters);
                             experiment.run();
 
                         } catch (IOException e1) {

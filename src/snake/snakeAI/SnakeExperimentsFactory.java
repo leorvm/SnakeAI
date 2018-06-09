@@ -1,5 +1,6 @@
 package snake.snakeAI;
 
+import gui.PanelParameters;
 import snake.snakeAI.ga.experiments.*;
 import snake.snakeAI.ga.GAListener;
 import snake.snakeAI.ga.GeneticAlgorithm;
@@ -28,7 +29,7 @@ public class SnakeExperimentsFactory extends ExperimentsFactory {
     }
 
     @Override
-    public Experiment buildExperiment() throws IOException {
+    public Experiment buildExperiment(PanelParameters panel) throws IOException {
         numRuns = Integer.parseInt(getParameterValue("Runs"));
         populationSize = Integer.parseInt(getParameterValue("Population size"));
         maxGenerations = Integer.parseInt(getParameterValue("Max generations"));
@@ -69,6 +70,7 @@ public class SnakeExperimentsFactory extends ExperimentsFactory {
 
         //PROBLEM 
         problem = SnakeProblem.buildProblemFromFile(new File(getParameterValue("Problem file")));
+        problem.getEnvironment().setPanelParameters(panel);
 
         String textualRepresentation = buildTextualExperiment();
 

@@ -85,7 +85,7 @@ public class PanelParameters extends PanelAtributesValue {
         comboBoxEscolherSnake.addItem("SnakeAI2 - homogéneos");
         comboBoxEscolherSnake.addItem("SnakeAI2 - heterogéneos");
 
-        getEscolherTipoDeSnake();
+        //getEscolherTipoDeSnake();
         configure();
     }
 
