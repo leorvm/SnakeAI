@@ -10,7 +10,7 @@ import java.util.List;
 public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeIndividual> {
 
     private static final double MOVEMENT_POINTS = 0.001;
-    private static final int FOOD_POINTS = 1;
+    private static final int FOOD_POINTS = 5;
 
     public int movements;
     public int food;
