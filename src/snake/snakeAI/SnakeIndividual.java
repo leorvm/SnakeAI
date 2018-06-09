@@ -34,21 +34,38 @@ public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeInd
         movements = 0;
         food = 0;
 
+        int food0 = 0;
+        int food1 = 0;
+
         for(int i = 0; i < problem.getNumEvironmentSimulations(); i++)
         {
             environment.initialize(i);
 
-            for (SnakeAgent agent: environment.getAgents()) {
-                ((SnakeAIAgent) agent).setWeights(genome);
-            }
+            if(environment.getTipoSnake() == 4) //Genomas diferentes para cobras heterogeneas
+                environment.setWeightsCase4(genome);
+            else
+                environment.setWeights(genome);
 
             environment.simulate();
+
+            if (environment.getTipoSnake() == 4) //2 snakes Heterogeneo
+            {
+                food0 += environment.getFoodAgent0();
+                food1 += environment.getFoodAgent1();
+            }
 
             movements += environment.getMovements();
             food += environment.getFoodsEaten();
         }
 
-        fitness = food * FOOD_POINTS + movements * MOVEMENT_POINTS;
+        if (environment.getTipoSnake() == 4) //2 snakes Heterogeneo
+        {
+            int penalty = food0 - food1 > 2 ? food0 - food1
+                    : food1 - food0 > 2 ? food1 - food0 : 0;
+
+            fitness = food * FOOD_POINTS + movements * MOVEMENT_POINTS - penalty;
+        } else
+            fitness = food * FOOD_POINTS + movements * MOVEMENT_POINTS;
 
         return fitness;
     }

@@ -29,12 +29,18 @@ public class SnakeAIAgentA extends SnakeAIAgent {
         inputs[5] = w != null && !w.hasTail() && !w.hasAgent() ? 1 : 0;
 
 
+        inputs[4] = cell.getLine()> food.getLine() ? 1 : 0;
+        inputs[3] = cell.getColumn()< food.getColumn() ? 1 : 0;
+        inputs[2] = cell.getLine()< food.getLine() ? 1 : 0;
+        inputs[1] = cell.getColumn()> food.getColumn() ? 1 : 0;
+
+/*
         inputs[4] =  cell.getLine()> food.getLine() ? 1 : 0;
         inputs[3] = cell.getColumn()< food.getColumn() ? 1 : 0;
         inputs[2] = cell.getLine()< food.getLine() ? 1 : 0;
         inputs[1] = cell.getColumn()> food.getColumn() ? 1 : 0;
 
-
+*/
 
         forwardPropagation();
 

@@ -47,7 +47,10 @@ public class SnakeProblem implements Problem<SnakeIndividual> {
 
     @Override
     public SnakeIndividual getNewIndividual() {
-        return new SnakeIndividual(this, genomeSize /*TODO?*/);
+        if(environment.getTipoSnakeParameters() == 4)
+            return new SnakeIndividual(this, genomeSize * 2);
+        else
+            return new SnakeIndividual(this, genomeSize);
     }
 
     public Environment getEnvironment() {

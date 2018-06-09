@@ -9,10 +9,7 @@ import snake.snakeAdhoc.SnakeAdhocAgent;
 import snake.snakeRandom.SnakeRandomAgent;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Environment {
 
@@ -128,6 +125,18 @@ public class Environment {
     }
     public int getTipoSnake() {
         return tipoSnake;
+    }
+
+    public int getTipoSnakeParameters() {
+        return panelParameters.getEscolherTipoDeSnake();
+    }
+
+    public int getFoodAgent0(){ //Necessario para o tipo 4 de snake
+        return agents.get(0).getFood();
+    }
+
+    public int getFoodAgent1(){ //Necessario para o tipo 4 de snake
+        return agents.get(1).getFood();
     }
 
     public void placeFood() {
@@ -247,5 +256,10 @@ public class Environment {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    public void setWeightsCase4(double[] genome) {
+        ((SnakeAIAgent) agents.get(0)).setWeights(Arrays.copyOfRange(genome,0,genome.length/2));
+        ((SnakeAIAgent) agents.get(1)).setWeights(Arrays.copyOfRange(genome,genome.length/2,genome.length));
     }
 }
