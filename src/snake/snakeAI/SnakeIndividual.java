@@ -86,6 +86,19 @@ public class SnakeIndividual extends RealVectorIndividual<SnakeProblem, SnakeInd
         return sb.toString();
     }
 
+    @Override
+    public String writeResults(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("\tfitness: ");
+        sb.append(fitness);
+        sb.append("\tmovements: ");
+        sb.append((double)movements/problem.getNumEvironmentSimulations());
+        sb.append("\tfood eaten: ");
+        sb.append((double)food/problem.getNumEvironmentSimulations());
+
+        return sb.toString();
+    }
+
     /**
      *
      * @param i

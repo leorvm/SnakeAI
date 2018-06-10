@@ -24,6 +24,8 @@ public abstract class Individual<P extends Problem, I extends Individual> implem
         return fitness;
     }
 
+    public abstract String writeResults();
+
     @Override
     public abstract I clone();
 }
