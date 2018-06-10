@@ -81,9 +81,10 @@ public class PanelParameters extends PanelAtributesValue {
         valueComponents.add(comboBoxEscolherSnake);
         comboBoxEscolherSnake.addItem("SnakeAdhoc");
         comboBoxEscolherSnake.addItem("SnakeRandom");
-        comboBoxEscolherSnake.addItem("SnakeAI");
+        comboBoxEscolherSnake.addItem("SnakeAI A");
         comboBoxEscolherSnake.addItem("SnakeAI2 - homogéneos");
         comboBoxEscolherSnake.addItem("SnakeAI2 - heterogéneos");
+        comboBoxEscolherSnake.addItem("SnakeAI B");
 
         //getEscolherTipoDeSnake();
         configure();

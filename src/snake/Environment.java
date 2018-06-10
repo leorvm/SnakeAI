@@ -100,7 +100,7 @@ public class Environment {
                 agents.add(snakeRandomAgent);
 
                 break;
-            case 2: //SnakeAI
+            case 2: //SnakeAI A
                 SnakeAIAgent snakeAIAgentA = new SnakeAIAgentA(grid[random.nextInt(grid.length)][random.nextInt(grid.length)]
                         , numInputs, numHiddenLayer, numOutputs, this);
                 agents.add(snakeAIAgentA);
@@ -120,6 +120,11 @@ public class Environment {
                SnakeAIAgent snakeAIAgentCase4B = new SnakeAIAgentB(grid[random.nextInt(grid.length)][random.nextInt(grid.length)]
                        , numInputs, numHiddenLayer, numOutputs, this);
                agents.add(snakeAIAgentCase4B);
+               break;
+           case 5: //SnakeAI B
+               SnakeAIAgent snakeAIAgentB = new SnakeAIAgentB(grid[random.nextInt(grid.length)][random.nextInt(grid.length)]
+                       , numInputs, numHiddenLayer, numOutputs, this);
+               agents.add(snakeAIAgentB);
                break;
         }
     }
