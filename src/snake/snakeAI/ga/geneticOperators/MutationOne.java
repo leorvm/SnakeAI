@@ -21,7 +21,7 @@ public class MutationOne<I extends RealVectorIndividual> extends Mutation<I> {
 
         for (int i = 0; i < ind.getNumGenes(); i++) {
             if(GeneticAlgorithm.random.nextDouble() < probability) {
-                ind.setGene(i, GeneticAlgorithm.random.nextDouble());
+                ind.setGene(i, (GeneticAlgorithm.random.nextDouble() * 2 - 1));
             }
         }
     }
