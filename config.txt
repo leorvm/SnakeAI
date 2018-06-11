@@ -1,20 +1,20 @@
-Runs: 1
+Runs: 30
 
-Population size: 200
+Population size: 300
 
-Max generations: 200
+Max generations: 150
 
 //--------------------------------
 
-Selection: tournament
+Selection: roullette
 
-Tournament size: 4
+//-Tournament size: 8
 
 //--------------------------------
 
 Recombination: one_cut
 
-Recombination probability: 0.7
+Recombination probability: 0.85
 
 //--------------------------------
 

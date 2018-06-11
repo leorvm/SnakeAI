@@ -54,6 +54,11 @@ public class MainFrame extends JFrame implements GAListener {
         }
     }
 
+    public void setBestIndividualPanelText(String text)
+    {
+        bestIndividualPanel.textArea.setText(text);
+    }
+
     private void jbInit() throws Exception {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("SNAKE AI");
